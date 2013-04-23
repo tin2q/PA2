@@ -55,6 +55,8 @@ char lookup_escape(char c)
 			return '\r';
 		case 'f':
 			return '\f';
+    case '"':
+      return '\"';
 		default:
 			return c;
 	}
@@ -175,9 +177,16 @@ t[rR][uU][eE]										{ yylval.boolean = 1; return BOOL_CONST; }
 	int lookahead = 0; int pos;
 		// The routine we pass the string to below takes care of the null terminator, so we
 		// can go right up to the edge of MAX_STR_CONST.
-	for (pos = 0; (c = yyinput()) != '"' && pos <= MAX_STR_CONST; pos++)
+	//for (pos = 0; (c = yyinput()) != '"' && pos <= MAX_STR_CONST; pos++)
+  for (pos = 0; pos <= MAX_STR_CONST; pos++)
 	{
+    c = yyinput();
 		//printf("%c %d\n", c, pos);
+    if(c == '"') {
+      if(!lookahead) {
+        break; 
+      }
+    }
 		if (c == '\\' && !lookahead)
 		{
 			//printf("Looking at backslash\n");
@@ -186,7 +195,7 @@ t[rR][uU][eE]										{ yylval.boolean = 1; return BOOL_CONST; }
 		}
 		else if (lookahead && c != '\n')
 		{
-			//printf("Looking at not newline\n");
+			//printf("Looking at not newline: %c\n", c);
 			char la = lookup_escape(c);
 			string_buf[pos] = la;
 			lookahead = 0;
@@ -220,7 +229,7 @@ t[rR][uU][eE]										{ yylval.boolean = 1; return BOOL_CONST; }
 		}
 		else
 		{
-			//printf("Adding\n");
+			//printf("Adding %c\n", c);
 			string_buf[pos] = c;
 		}
 	} // End for
