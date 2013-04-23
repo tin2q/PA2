@@ -1,3 +1,23 @@
+Tran Tu
+Trisdan Leyson
+
+Write-up for PA2
+----------------
+Our testing strategy was to add flex rules to handle each type of lexeme and then
+added some cases to a test program to see if they were handled correctly. This
+included both legal and erroneous inputs for each type of lexeme. We also tested
+the lexer on our programs from Assignment 1 and the examples using the mycoolc 
+script. 
+
+Our program contains regular expressions for each lexeme of the language and also
+contains an exclusionary rule which catches any unrecognized input and flags it
+as erroneous. If anything unfamiliar occurs in a file, it will be singled out as
+unrecognized. Our tests cover all the constructs of the Cool language as well as
+both types of identifiers and all three types of constants, and contain several
+types of comments, nested and unnested. We also included tests for the casing
+rules of the identifiers and literals; some of our test files contained
+tRUE and tRUe.
+
 README file for Programming Assignment 2 (C++ edition)
 =====================================================
 
@@ -122,4 +142,16 @@ Instructions
 
 Write-up for PA2
 ----------------
+Our testing strategy was to add flex rules to handle each type of lexeme and then
+added some cases to a test program to see if they were handled correctly. This
+included both legal and erroneous inputs for each type of lexeme. We also tested
+the lexer on our programs from Assignment 1 using the mycoolc script. 
 
+Our program contains regular expressions for each lexeme of the language and also
+contains an exclusionary rule which catches any unrecognized input and flags it
+as erroneous. If anything unfamiliar occurs in a file, it will be singled out as
+unrecognized. Our tests cover all the constructs of the Cool language as well as
+both types of identifiers and all three types of constants, and contain several
+types of comments, nested and unnested. We also included tests for the casing
+rules of the identifiers and literals; some of our test files contained
+tRUE and tRUe.

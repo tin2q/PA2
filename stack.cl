@@ -7,6 +7,8 @@
  *  Skeleton file
  *)
 
+(* (* nested comment *) *)
+
 class Main inherits IO {
   st : Stack <- new Stack;
 

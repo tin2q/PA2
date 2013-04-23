@@ -241,6 +241,20 @@ t[rR][uU][eE]										{ yylval.boolean = 1; return BOOL_CONST; }
 	else
 	{
 		yylval.error_msg = "String constant too long";
+    //clean up the rest of the string
+    while((c = yyinput()) !=  '"'){
+      if (c == '\n') {
+        ++curr_lineno;
+      }
+      if (c == '\\') {
+        if((c = yyinput()) == '"') {
+          continue;
+        }
+        else if((c == '\n')) {
+          ++curr_lineno;
+        }
+      }
+    }
 		return ERROR;
 	}
 }
